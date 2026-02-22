@@ -1,3 +1,38 @@
 body {
+  margin: 0;
   font-family: system-ui, sans-serif;
+  background-color: #111827;
+  color: #e5e7eb;
+}
+
+header {
+  background-color: #1f2933;
+  padding: 1rem;
+}
+
+nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+nav button {
+  background: #374151;
+  color: #e5e7eb;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+nav button.active {
+  background: #8b5cf6;
+}
+
+#content {
+  padding: 2rem;
+}
+
+.home h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
