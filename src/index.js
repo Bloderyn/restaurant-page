@@ -1,64 +1,74 @@
 import "./style.css";
-import createHomePage from "./home";
-import createMenuPage from "./menu";
-import createContactPage from "./contact";
+import loadHome from "./home.js";
+import loadMenu from "./menu.js";
+import loadAbout from "./about.js";
+import loadContact from "./contact.js";
 
-function getContentDiv() {
-  return document.querySelector("#content");
+export function createElement(tag, options = {}) {
+  const el = document.createElement(tag);
+
+  if (options.class) {
+    el.classList.add(...options.class);
+  }
+
+  if (options.text) {
+    el.textContent = options.text;
+  }
+
+  if (options.html) {
+    el.innerHTML = options.html;
+  }
+
+  if (options.attrs) {
+    Object.entries(options.attrs).forEach(([key, value]) => {
+      el.setAttribute(key, value);
+    });
+  }
+
+  if (options.children) {
+    options.children.forEach((child) => el.appendChild(child));
+  }
+
+  return el;
 }
 
-function clearContent() {
-  const content = getContentDiv();
-  content.textContent = "";
-}
+function createHeader() {
+  const header = createElement("header", { classes: ["tavern-header"] });
 
-function loadHome() {
-  clearContent();
-  const content = getContentDiv();
-  content.appendChild(createHomePage());
-}
-
-function loadMenu() {
-  clearContent();
-  const content = getContentDiv();
-  content.appendChild(createMenuPage());
-}
-
-function loadContact() {
-  clearContent();
-  const content = getContentDiv();
-  content.appendChild(createContactPage());
-}
-
-function setActiveButton(button) {
-  const buttons = document.querySelectorAll("nav button");
-  buttons.forEach((btn) => btn.classList.remove("active"));
-  button.classList.add("active");
-}
-
-function addNavEvents() {
-  const homeBtn = document.querySelector('button[data-tab="home"]');
-  const menuBtn = document.querySelector('button[data-tab="menu"]');
-  const contactBtn = document.querySelector('button[data-tab="contact"]');
-
-  homeBtn.addEventListener("click", () => {
-    setActiveButton(homeBtn);
-    loadHome();
+  const title = createElement("h1", {
+    classes: ["tavern-title"],
+    text: "The Drunken Wyvern",
   });
 
-  menuBtn.addEventListener("click", () => {
-    setActiveButton(menuBtn);
-    loadMenu();
+  const subtitle = createElement("p", {
+    classes: ["tavern-subtitle"],
+    text: "EST. Somewhere Between Wars",
   });
 
-  contactBtn.addEventListener("click", () => {
-    setActiveButton(contactBtn);
-    loadContact();
-  });
+  header.appendChild(title);
+  header.appendChild(subtitle);
+
+  const nav = createNav();
+  header.appendChild(nav);
+
+  return header;
 }
 
-addNavEvents();
-loadHome();
-setActiveButton(document.querySelector('button[data-tab="home"]'));
+//TODO: NAV, MAINPANEL, TAB ACTIVE
 
-console.log("Restaurant page app running.");
+function loadTab(tabId, mainPanel) {
+  switch (tabId) {
+    case "home":
+      loadHome(mainPanel);
+      break;
+  }
+}
+
+function init() {
+  const content = document.getElementById("content");
+  const header = createHeader();
+
+  content.appendChild(header);
+}
+
+document.addEventListener("DOMContentLoaded", init);
