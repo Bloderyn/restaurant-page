@@ -29,9 +29,41 @@ export default function loadMenu(mainPanel) {
 
   const menuGrid = createElement("div", { classes: ["menu-grid"] });
 
+  const menuTabs = [
+    { id: "meals", label: "Meals" },
+    { id: "drinks", label: "Drinks" },
+    { id: "desserts", label: "Desserts" },
+  ];
+
+  function createMenuNav() {
+    const itemsNav = createElement("nav", { classes: ["menu-nav"] });
+
+    menuTabs.forEach((tab, index) => {
+      const btn = createElement("button", {
+        classes: ["menu-tab"],
+        text: tab.label,
+        attrs: { "data-tab": tab.id },
+      });
+
+      if (index === 0) btn.classList.add("active");
+      itemsNav.appendChild(btn);
+    });
+
+    return itemsNav;
+  }
+
+  function setActiveMenuTab(navElement, tabId) {
+    const buttons = navElement.querySelectorAll(".menu-tab");
+    buttons.forEach((btn) => {
+      const isActive = btn.getAttribute("data-tab") === tabId;
+      btn.classList.toggle("active", isActive);
+    });
+  }
+
   const items = [
     {
       imgSrc: wyvernfireStewImage,
+      category: "meals",
       name: "Wyvernfire Stew",
       price: "8 silver",
       desc: "Slow-cooked stag, root vegetables, and ember-spice broth thick enough to stand a spoon in.",
@@ -39,6 +71,7 @@ export default function loadMenu(mainPanel) {
     },
     {
       imgSrc: blackwaldMushPieImage,
+      category: "meals",
       name: "Blackwald Mushroom Pie",
       price: "6 silver",
       desc: "Flaky crust filled with forest mushrooms, caramelized onions, and a suspicious hint of moon-herb.",
@@ -46,6 +79,7 @@ export default function loadMenu(mainPanel) {
     },
     {
       imgSrc: charredDragonImage,
+      category: "meals",
       name: "Charred Dragonwing Skewers",
       price: "10 silver",
       desc: "Spicy skewers slathered in hellpepper glaze. Definitely not actual dragon. Probably.",
@@ -54,6 +88,7 @@ export default function loadMenu(mainPanel) {
     {
       imgSrc: emberwineImage,
       imgClass: "menu-item-image--emberwine",
+      category: "drinks",
       name: "Emberwine Mulled Mead",
       price: "4 silver",
       desc: "Honey mead warmed with clove, star-amber, and a single emberstone at the bottom of the mug.",
@@ -62,6 +97,7 @@ export default function loadMenu(mainPanel) {
     {
       imgSrc: moonlitOrchardImage,
       imgClass: "menu-item-image--moonlit-orchard",
+      category: "drinks",
       name: "Moonlit Orchard Cider",
       price: "3 silver",
       desc: "Cloudy cider pressed from apples that only grow under starlight, served with a cinnamon stick.",
@@ -69,6 +105,7 @@ export default function loadMenu(mainPanel) {
     },
     {
       imgSrc: travelerBreadImage,
+      category: "desserts",
       name: "Traveler's Bread and Ashen Butter",
       price: "2 silver",
       desc: "Dense black bread with smoked salt butter whipped to airy perfection.",
@@ -76,51 +113,70 @@ export default function loadMenu(mainPanel) {
     },
   ];
 
-  items.forEach((item) => {
-    const card = createElement("article", { classes: ["menu-item"] });
+  function renderMenuItems(categoryId) {
+    menuGrid.innerHTML = "";
 
-    const imageClasses = ["menu-item-image"];
-    if (item.imgClass) imageClasses.push(item.imgClass);
+    const categoryItems = items.filter((item) => item.category === categoryId);
 
-    const image = createElement("img", {
-      classes: imageClasses,
-      imgSrc: item.imgSrc,
-      attrs: {
-        alt: item.name,
-      },
+    categoryItems.forEach((item) => {
+      const card = createElement("article", { classes: ["menu-item"] });
+
+      const imageClasses = ["menu-item-image"];
+      if (item.imgClass) imageClasses.push(item.imgClass);
+
+      const image = createElement("img", {
+        classes: imageClasses,
+        imgSrc: item.imgSrc,
+        attrs: {
+          alt: item.name,
+        },
+      });
+
+      const top = createElement("div", { classes: ["menu-item-header"] });
+      const itemName = createElement("div", {
+        classes: ["menu-item-name"],
+        text: item.name,
+      });
+      const price = createElement("div", {
+        classes: ["menu-item-price"],
+        text: item.price,
+      });
+
+      top.appendChild(itemName);
+      top.appendChild(price);
+
+      const desc = createElement("p", {
+        classes: ["menu-item-desc"],
+        text: item.desc,
+      });
+
+      const tag = createElement("div", {
+        classes: ["menu-item-tag"],
+        text: item.tag,
+      });
+
+      card.appendChild(image);
+      card.appendChild(top);
+      card.appendChild(desc);
+      card.appendChild(tag);
+
+      menuGrid.appendChild(card);
     });
+  }
 
-    const top = createElement("div", { classes: ["menu-item-header"] });
-    const itemName = createElement("div", {
-      classes: ["menu-item-name"],
-      text: item.name,
-    });
-    const price = createElement("div", {
-      classes: ["menu-item-price"],
-      text: item.price,
-    });
+  const menuNav = createMenuNav();
 
-    top.appendChild(itemName);
-    top.appendChild(price);
+  menuNav.addEventListener("click", (e) => {
+    if (!e.target.classList.contains("menu-tab")) return;
 
-    const desc = createElement("p", {
-      classes: ["menu-item-desc"],
-      text: item.desc,
-    });
-
-    const tag = createElement("div", {
-      classes: ["menu-item-tag"],
-      text: item.tag,
-    });
-
-    card.appendChild(image);
-    card.appendChild(top);
-    card.appendChild(desc);
-    card.appendChild(tag);
-
-    menuGrid.appendChild(card);
+    const tabId = e.target.getAttribute("data-tab");
+    setActiveMenuTab(menuNav, tabId);
+    renderMenuItems(tabId);
   });
 
+  renderMenuItems(menuTabs[0].id);
+
+  body.appendChild(menuNav);
   body.appendChild(menuGrid);
   menuCard.appendChild(header);
   menuCard.appendChild(body);
