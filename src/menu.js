@@ -53,6 +53,7 @@ export default function loadMenu(mainPanel) {
     },
     {
       imgSrc: emberwineImage,
+      imgClass: "menu-item-image--emberwine",
       name: "Emberwine Mulled Mead",
       price: "4 silver",
       desc: "Honey mead warmed with clove, star-amber, and a single emberstone at the bottom of the mug.",
@@ -60,6 +61,7 @@ export default function loadMenu(mainPanel) {
     },
     {
       imgSrc: moonlitOrchardImage,
+      imgClass: "menu-item-image--moonlit-orchard",
       name: "Moonlit Orchard Cider",
       price: "3 silver",
       desc: "Cloudy cider pressed from apples that only grow under starlight, served with a cinnamon stick.",
@@ -77,8 +79,11 @@ export default function loadMenu(mainPanel) {
   items.forEach((item) => {
     const card = createElement("article", { classes: ["menu-item"] });
 
+    const imageClasses = ["menu-item-image"];
+    if (item.imgClass) imageClasses.push(item.imgClass);
+
     const image = createElement("img", {
-      classes: ["menu-item-image"],
+      classes: imageClasses,
       imgSrc: item.imgSrc,
       attrs: {
         alt: item.name,

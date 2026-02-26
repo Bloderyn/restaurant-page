@@ -1,0 +1,5 @@
+MENU:
+
+- Create different sections: meals, drinks, desserts
+- Create a card nav for new sections; meals on default select
+- Display images and titles only, and create popover for details
