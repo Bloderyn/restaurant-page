@@ -7,8 +7,8 @@ import loadContact from "./contact.js";
 export function createElement(tag, options = {}) {
   const el = document.createElement(tag);
 
-  if (options.class) {
-    el.classList.add(...options.class);
+  if (options.classes) {
+    el.classList.add(...options.classes);
   }
 
   if (options.text) {
@@ -27,6 +27,10 @@ export function createElement(tag, options = {}) {
 
   if (options.children) {
     options.children.forEach((child) => el.appendChild(child));
+  }
+
+  if (options.imgSrc) {
+    el.src = options.imgSrc;
   }
 
   return el;
@@ -64,11 +68,11 @@ function createNav() {
     { id: "contact", label: "Contact" },
   ];
 
-  tabsInfo.forEach((tab) => {
+  tabsInfo.forEach((tab, index) => {
     const btn = createElement("button", {
       classes: ["nav-tab"],
-      text: info.label,
-      attrs: { "data-tab": info.id },
+      text: tab.label,
+      attrs: { "data-tab": tab.id },
     });
 
     if (index === 0) btn.classList.add("active");

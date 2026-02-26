@@ -86,7 +86,7 @@ function createSidePanel() {
     classes: ["side-note"],
     html:
       `They say if you linger till closing, the innkeep will show you the <span class="hero-highlight">door that shouldn't exist</span>` +
-      `the one that opens to someplace that is not on any map.`,
+      `, the one that opens to someplace that is not on any map.`,
   });
 
   hookCard.appendChild(hookTitle);

@@ -1,4 +1,10 @@
 import { createElement } from "./index.js";
+import wyvernfireStewImage from "../images/wyvernfire-stew.png";
+import blackwaldMushPieImage from "../images/blackwald-mush-pie.png";
+import charredDragonImage from "../images/charred-dragon.png";
+import emberwineImage from "../images/emberwine.png";
+import moonlitOrchardImage from "../images/moonlit-orchard.png";
+import travelerBreadImage from "../images/traveler-bread.png";
 
 export default function loadMenu(mainPanel) {
   mainPanel.innerHTML = "";
@@ -25,36 +31,42 @@ export default function loadMenu(mainPanel) {
 
   const items = [
     {
+      imgSrc: wyvernfireStewImage,
       name: "Wyvernfire Stew",
       price: "8 silver",
       desc: "Slow-cooked stag, root vegetables, and ember-spice broth thick enough to stand a spoon in.",
       tag: "House specialty · Mildly cursed",
     },
     {
+      imgSrc: blackwaldMushPieImage,
       name: "Blackwald Mushroom Pie",
       price: "6 silver",
       desc: "Flaky crust filled with forest mushrooms, caramelized onions, and a suspicious hint of moon-herb.",
-      tag: "Vegetarian · May cause visions.",
+      tag: "Vegetarian · May cause visions",
     },
     {
+      imgSrc: charredDragonImage,
       name: "Charred Dragonwing Skewers",
       price: "10 silver",
       desc: "Spicy skewers slathered in hellpepper glaze. Definitely not actual dragon. Probably.",
-      tag: "Spicy · Recommended with mead.",
+      tag: "Spicy · Recommended with mead",
     },
     {
+      imgSrc: emberwineImage,
       name: "Emberwine Mulled Mead",
       price: "4 silver",
       desc: "Honey mead warmed with clove, star-amber, and a single emberstone at the bottom of the mug.",
       tag: "Best served near the hearth",
     },
     {
+      imgSrc: moonlitOrchardImage,
       name: "Moonlit Orchard Cider",
       price: "3 silver",
       desc: "Cloudy cider pressed from apples that only grow under starlight, served with a cinnamon stick.",
       tag: "Light · Refreshing",
     },
     {
+      imgSrc: travelerBreadImage,
       name: "Traveler's Bread and Ashen Butter",
       price: "2 silver",
       desc: "Dense black bread with smoked salt butter whipped to airy perfection.",
@@ -64,6 +76,14 @@ export default function loadMenu(mainPanel) {
 
   items.forEach((item) => {
     const card = createElement("article", { classes: ["menu-item"] });
+
+    const image = createElement("img", {
+      classes: ["menu-item-image"],
+      imgSrc: item.imgSrc,
+      attrs: {
+        alt: item.name,
+      },
+    });
 
     const top = createElement("div", { classes: ["menu-item-header"] });
     const itemName = createElement("div", {
@@ -88,6 +108,7 @@ export default function loadMenu(mainPanel) {
       text: item.tag,
     });
 
+    card.appendChild(image);
     card.appendChild(top);
     card.appendChild(desc);
     card.appendChild(tag);
