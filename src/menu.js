@@ -5,6 +5,12 @@ import charredDragonImage from "../images/charred-dragon.png";
 import emberwineImage from "../images/emberwine.png";
 import moonlitOrchardImage from "../images/moonlit-orchard.png";
 import travelerBreadImage from "../images/traveler-bread.png";
+import emberImage from "../images/ember.png";
+import wolfbornImage from "../images/wolfborn.png";
+import hearthfireImage from "../images/hearthfire.png";
+import krakenImage from "../images/kraken.png";
+import forestImage from "../images/forest.png";
+import riverImage from "../images/river.png";
 
 export default function loadMenu(mainPanel) {
   mainPanel.innerHTML = "";
@@ -67,7 +73,7 @@ export default function loadMenu(mainPanel) {
       name: "Wyvernfire Stew",
       price: "8 silver",
       desc: "Slow-cooked stag, root vegetables, and ember-spice broth thick enough to stand a spoon in.",
-      tag: "House specialty · Mildly cursed",
+      tag: "House specialty · Served with charred bread",
     },
     {
       imgSrc: blackwaldMushPieImage,
@@ -75,15 +81,72 @@ export default function loadMenu(mainPanel) {
       name: "Blackwald Mushroom Pie",
       price: "6 silver",
       desc: "Flaky crust filled with forest mushrooms, caramelized onions, and a suspicious hint of moon-herb.",
-      tag: "Vegetarian · May cause visions",
+      tag: "Vegetarian · Best with cider",
     },
     {
       imgSrc: charredDragonImage,
       category: "meals",
       name: "Charred Dragonwing Skewers",
       price: "10 silver",
-      desc: "Spicy skewers slathered in hellpepper glaze. Definitely not actual dragon. Probably.",
-      tag: "Spicy · Recommended with mead",
+      desc: "Spicy skewers slathered in hellpepper glaze. The innkeep swears the wings were sourced from a dragon that died of old age, but the charred flavor is more likely from the cooking process.",
+      tag: "Spicy · Not for the faint of heart",
+    },
+
+    {
+      imgSrc: emberImage,
+      category: "meals",
+      name: "Ember-Root Harvest Soup",
+      price: "7 silver",
+      desc: "A thick autumnal soup made of ember-carrots, moon-onions, and smoked barley simmered in a glowing copper pot. Served with herb-butter toast warmed on the tavern hearth.",
+      tag: "Vegetarian · Served with toast",
+    },
+    {
+      imgSrc: travelerBreadImage,
+      category: "meals",
+      name: "Traveler's Bread and Ashen Butter",
+      price: "2 silver",
+      desc: "Dense black bread with smoked salt butter whipped to airy perfection.",
+      tag: "Good with any stew",
+    },
+    {
+      imgSrc: wolfbornImage,
+      category: "meals",
+      name: "Wolfborn Shepherd's Pie",
+      price: "9 silver",
+      desc: "Layers of root mash, roasted forest mushrooms, thyme gravy,  and tender slow-cooked meat from mountain sheep. Topped with a crackled golden crust.",
+      tag: "Hearty · Savory",
+    },
+    {
+      imgSrc: hearthfireImage,
+      category: "meals",
+      name: "Hearthfire Herb-Roasted Pheasant",
+      price: "12 silver",
+      desc: "Phrasant roasted with wild rosemary, sky-sage, and crisp apple slices, served on a wooden board with charred vegetables.",
+      tag: "Aromatic · Best with Emberwine",
+    },
+    {
+      imgSrc: krakenImage,
+      category: "meals",
+      name: "Kraken-Ink Risotto",
+      price: "11 silver",
+      desc: "A surprisingly cosy dark risotto made with sea-ink, soft river herbs, and smoky shoreline cheese.",
+      tag: "Unique · Pairs with Moonlit Orchard Cider",
+    },
+    {
+      imgSrc: forestImage,
+      category: "meals",
+      name: "Forest Guardian's Roast",
+      price: "14 silver",
+      desc: "Game meat marinated in juniper, fire-pepper, and sweetroot, roasted until tender and served with caramelized turnips.",
+      tag: "Savory · A favorite of hunters",
+    },
+    {
+      imgSrc: riverImage,
+      category: "meals",
+      name: "Rive-Knight Trout and Ash-Lemon",
+      price: "13 silver",
+      desc: "Trout pan-fried in browned butter with sprigs of pinem served with ahs-lemon wedge and crispy garlic potatoes.",
+      tag: "Light · Best with Moonlit Orchard Cider",
     },
     {
       imgSrc: emberwineImage,
@@ -92,7 +155,7 @@ export default function loadMenu(mainPanel) {
       name: "Emberwine Mulled Mead",
       price: "4 silver",
       desc: "Honey mead warmed with clove, star-amber, and a single emberstone at the bottom of the mug.",
-      tag: "Best served near the hearth",
+      tag: "Warm · Spiced",
     },
     {
       imgSrc: moonlitOrchardImage,
@@ -101,15 +164,7 @@ export default function loadMenu(mainPanel) {
       name: "Moonlit Orchard Cider",
       price: "3 silver",
       desc: "Cloudy cider pressed from apples that only grow under starlight, served with a cinnamon stick.",
-      tag: "Light · Refreshing",
-    },
-    {
-      imgSrc: travelerBreadImage,
-      category: "desserts",
-      name: "Traveler's Bread and Ashen Butter",
-      price: "2 silver",
-      desc: "Dense black bread with smoked salt butter whipped to airy perfection.",
-      tag: "Good with any stew",
+      tag: "Chilled · Fruity",
     },
   ];
 
