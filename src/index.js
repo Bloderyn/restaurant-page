@@ -4,6 +4,8 @@ import loadMenu from "./menu.js";
 import loadAbout from "./about.js";
 import loadContact from "./contact.js";
 
+const TAB_TRANSITION_MS = 220;
+
 export function createElement(tag, options = {}) {
   const el = document.createElement(tag);
 
@@ -135,6 +137,8 @@ function init() {
   const header = createHeader();
   const mainPanel = createMainPanel();
   const footer = createFooter();
+  let currentTabId = "home";
+  let isTabTransitioning = false;
 
   content.appendChild(header);
   content.appendChild(mainPanel);
@@ -146,8 +150,23 @@ function init() {
     if (!e.target.classList.contains("nav-tab")) return;
 
     const tabId = e.target.getAttribute("data-tab");
+    if (tabId === currentTabId || isTabTransitioning) return;
+
+    isTabTransitioning = true;
     setActiveTab(tabId);
-    loadTab(tabId, mainPanel);
+    mainPanel.classList.add("panel-transition-out");
+
+    window.setTimeout(() => {
+      loadTab(tabId, mainPanel);
+      currentTabId = tabId;
+      mainPanel.classList.remove("panel-transition-out");
+      mainPanel.classList.add("panel-transition-in");
+
+      window.setTimeout(() => {
+        mainPanel.classList.remove("panel-transition-in");
+        isTabTransitioning = false;
+      }, TAB_TRANSITION_MS);
+    }, TAB_TRANSITION_MS);
   });
 }
 
