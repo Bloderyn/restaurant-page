@@ -1,0 +1,20 @@
+:root {
+  --bg-night: #101011;
+  --bg-deep: #171619;
+  --panel: rgba(24, 22, 24, 0.82);
+  --panel-strong: rgba(30, 27, 29, 0.92);
+  --panel-soft: rgba(255, 255, 255, 0.03);
+  --line: rgba(229, 208, 170, 0.18);
+  --line-strong: rgba(229, 208, 170, 0.34);
+  --text-main: #f2ede7;
+  --text-soft: #cbbfb3;
+  --text-faint: #9e9489;
+  --gold: #c6a257;
+  --gold-bright: #e0bf7a;
+  --rose: #d7a29d;
+  --shadow-xl: 0 28px 70px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 18px 34px rgba(0, 0, 0, 0.28);
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 16px;
+}

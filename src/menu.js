@@ -15,40 +15,49 @@ import riverImage from "../images/river.png";
 export default function loadMenu(mainPanel) {
   mainPanel.innerHTML = "";
 
-  const menuCard = createElement("section", { classes: ["card"] });
-  const header = createElement("div", { classes: ["card-header"] });
-
-  const title = createElement("h2", {
-    classes: ["card-title"],
-    text: "Tavern Fare",
+  const page = createElement("div", { classes: ["page", "menu-page"] });
+  const heading = createElement("section", {
+    classes: ["page-heading", "panel-surface"],
   });
 
-  const tagline = createElement("span", {
-    classes: ["card-tagline"],
-    text: "Hearty stews and questionable spirits",
-  });
-
-  header.appendChild(title);
-  header.appendChild(tagline);
-
-  const body = createElement("div", { classes: ["card-body"] });
+  heading.appendChild(
+    createElement("p", {
+      classes: ["section-eyebrow"],
+      text: "Chef's selection",
+    }),
+  );
+  heading.appendChild(
+    createElement("h2", {
+      classes: ["section-title"],
+      html: 'An alchemist\'s menu for <span>moonlit company</span>',
+    }),
+  );
+  heading.appendChild(
+    createElement("p", {
+      classes: ["section-copy", "page-heading-copy"],
+      text: "From plated game and blackened risottos to smoked orchard pours, each course is styled for a long table, low conversation, and a final dramatic flourish from the kitchen.",
+    }),
+  );
 
   const menuGrid = createElement("div", { classes: ["menu-grid"] });
 
   const menuTabs = [
-    { id: "meals", label: "Meals" },
-    { id: "drinks", label: "Drinks" },
-    { id: "desserts", label: "Desserts" },
+    { id: "meals", label: "Grand suppers" },
+    { id: "drinks", label: "Elixirs" },
+    { id: "desserts", label: "Sweet endings" },
   ];
 
   function createMenuNav() {
-    const itemsNav = createElement("nav", { classes: ["menu-nav"] });
+    const itemsNav = createElement("nav", {
+      classes: ["menu-nav"],
+      attrs: { "aria-label": "Menu categories" },
+    });
 
     menuTabs.forEach((tab, index) => {
       const btn = createElement("button", {
         classes: ["menu-tab"],
         text: tab.label,
-        attrs: { "data-tab": tab.id },
+        attrs: { "data-tab": tab.id, type: "button" },
       });
 
       if (index === 0) btn.classList.add("active");
@@ -71,100 +80,140 @@ export default function loadMenu(mainPanel) {
       imgSrc: wyvernfireStewImage,
       category: "meals",
       name: "Wyvernfire Stew",
-      price: "8 silver",
-      desc: "Slow-cooked stag, root vegetables, and ember-spice broth thick enough to stand a spoon in.",
-      tag: "House specialty · Served with charred bread",
+      price: "26 g",
+      desc: "Slow-braised venison, ember roots, and a dark stock reduced until it clings to the spoon.",
+      tag: "Hall signature",
     },
     {
       imgSrc: blackwaldMushPieImage,
       category: "meals",
       name: "Blackwald Mushroom Pie",
-      price: "6 silver",
-      desc: "Flaky crust filled with forest mushrooms, caramelized onions, and a suspicious hint of moon-herb.",
-      tag: "Vegetarian · Best with cider",
+      price: "22 g",
+      desc: "Buttery crust layered with woodland mushrooms, caramelized shallots, and midnight herbs.",
+      tag: "Vegetarian favorite",
     },
     {
       imgSrc: charredDragonImage,
       category: "meals",
       name: "Charred Dragonwing Skewers",
-      price: "10 silver",
-      desc: "Spicy skewers slathered in hellpepper glaze. The innkeep swears the wings were sourced from a dragon that died of old age, but the charred flavor is more likely from the cooking process.",
-      tag: "Spicy · Not for the faint of heart",
+      price: "31 g",
+      desc: "Fire-glazed skewers lacquered with black pepper syrup and served over smoking cedar chips.",
+      tag: "For brave appetites",
     },
 
     {
       imgSrc: emberImage,
       category: "meals",
       name: "Ember-Root Harvest Soup",
-      price: "7 silver",
-      desc: "A thick autumnal soup made of ember-carrots, moon-onions, and smoked barley simmered in a glowing copper pot. Served with herb-butter toast warmed on the tavern hearth.",
-      tag: "Vegetarian · Served with toast",
+      price: "19 g",
+      desc: "A velvet soup of smoked barley, ember carrots, and moon onions finished with cultured cream.",
+      tag: "Silken and warming",
     },
     {
       imgSrc: travelerBreadImage,
       category: "meals",
-      name: "Traveler's Bread and Ashen Butter",
-      price: "2 silver",
-      desc: "Dense black bread with smoked salt butter whipped to airy perfection.",
-      tag: "Good with any stew",
+      name: "Traveler's Bread and Ash Butter",
+      price: "12 g",
+      desc: "House black loaf served warm with smoked salt butter and candle honey.",
+      tag: "Shared table staple",
     },
     {
       imgSrc: wolfbornImage,
       category: "meals",
       name: "Wolfborn Shepherd's Pie",
-      price: "9 silver",
-      desc: "Layers of root mash, roasted forest mushrooms, thyme gravy,  and tender slow-cooked meat from mountain sheep. Topped with a crackled golden crust.",
-      tag: "Hearty · Savory",
+      price: "24 g",
+      desc: "Mountain lamb, thyme gravy, and root mash baked beneath a lacquered golden crust.",
+      tag: "Deeply savory",
     },
     {
       imgSrc: hearthfireImage,
       category: "meals",
       name: "Hearthfire Herb-Roasted Pheasant",
-      price: "12 silver",
-      desc: "Phrasant roasted with wild rosemary, sky-sage, and crisp apple slices, served on a wooden board with charred vegetables.",
-      tag: "Aromatic · Best with Emberwine",
+      price: "34 g",
+      desc: "Pheasant roasted with rosemary, sky sage, and orchard apples, finished with charred vegetables.",
+      tag: "Aromatic centerpiece",
     },
     {
       imgSrc: krakenImage,
       category: "meals",
       name: "Kraken-Ink Risotto",
-      price: "11 silver",
-      desc: "A surprisingly cosy dark risotto made with sea-ink, soft river herbs, and smoky shoreline cheese.",
-      tag: "Unique · Pairs with Moonlit Orchard Cider",
+      price: "29 g",
+      desc: "Dark risotto folded with sea ink, river herbs, and smoked shoreline cheese.",
+      tag: "Unexpectedly elegant",
     },
     {
       imgSrc: forestImage,
       category: "meals",
       name: "Forest Guardian's Roast",
-      price: "14 silver",
-      desc: "Game meat marinated in juniper, fire-pepper, and sweetroot, roasted until tender and served with caramelized turnips.",
-      tag: "Savory · A favorite of hunters",
+      price: "38 g",
+      desc: "Juniper-marinated game roast with caramelized turnips and dark pan glaze.",
+      tag: "Long-table classic",
     },
     {
       imgSrc: riverImage,
       category: "meals",
-      name: "Rive-Knight Trout and Ash-Lemon",
-      price: "13 silver",
-      desc: "Trout pan-fried in browned butter with sprigs of pinem served with ahs-lemon wedge and crispy garlic potatoes.",
-      tag: "Light · Best with Moonlit Orchard Cider",
+      name: "River-Knight Trout and Ash Lemon",
+      price: "27 g",
+      desc: "Brown-butter trout with ash lemon, crisp potatoes, and a scatter of woodland dill.",
+      tag: "Bright and delicate",
     },
     {
       imgSrc: emberwineImage,
       imgClass: "menu-item-image--emberwine",
       category: "drinks",
       name: "Emberwine Mulled Mead",
-      price: "4 silver",
-      desc: "Honey mead warmed with clove, star-amber, and a single emberstone at the bottom of the mug.",
-      tag: "Warm · Spiced",
+      price: "14 g",
+      desc: "Honey mead warmed with clove, star amber, and a softly glowing emberstone.",
+      tag: "Warm cellar pour",
     },
     {
       imgSrc: moonlitOrchardImage,
       imgClass: "menu-item-image--moonlit-orchard",
       category: "drinks",
       name: "Moonlit Orchard Cider",
-      price: "3 silver",
-      desc: "Cloudy cider pressed from apples that only grow under starlight, served with a cinnamon stick.",
-      tag: "Chilled · Fruity",
+      price: "12 g",
+      desc: "Clouded cider pressed from midnight apples and perfumed with winter bark.",
+      tag: "Bright and chilled",
+    },
+    {
+      imgSrc: emberImage,
+      category: "drinks",
+      name: "Ashen Orchard Tonic",
+      price: "13 g",
+      desc: "Roasted pear, tonic herbs, and silver citrus served over cracked ice.",
+      tag: "House aperitif",
+    },
+    {
+      imgSrc: krakenImage,
+      category: "drinks",
+      name: "Deepwater Black",
+      price: "16 g",
+      desc: "An ink-dark cordial with sea salt, bitter orange, and a cold mineral finish.",
+      tag: "For slower sipping",
+    },
+    {
+      imgSrc: travelerBreadImage,
+      category: "desserts",
+      name: "Candle Honey Tart",
+      price: "15 g",
+      desc: "Burnished pastry shell filled with warm honey custard and smoked cream.",
+      tag: "Soft finish",
+    },
+    {
+      imgSrc: blackwaldMushPieImage,
+      category: "desserts",
+      name: "Blackwood Truffle Slice",
+      price: "17 g",
+      desc: "Dark chocolate truffle layered with cherry glaze and midnight cocoa crumb.",
+      tag: "Rich and decadent",
+    },
+    {
+      imgSrc: moonlitOrchardImage,
+      category: "desserts",
+      name: "Starlight Orchard Cream",
+      price: "14 g",
+      desc: "Whipped cream set with spiced apples, crystal sugar, and a splash of cider syrup.",
+      tag: "Light closing course",
     },
   ];
 
@@ -174,7 +223,7 @@ export default function loadMenu(mainPanel) {
     const categoryItems = items.filter((item) => item.category === categoryId);
 
     categoryItems.forEach((item) => {
-      const card = createElement("article", { classes: ["menu-item"] });
+      const card = createElement("article", { classes: ["menu-item", "panel-surface"] });
 
       const imageClasses = ["menu-item-image"];
       if (item.imgClass) imageClasses.push(item.imgClass);
@@ -210,7 +259,13 @@ export default function loadMenu(mainPanel) {
         text: item.tag,
       });
 
+      const ornament = createElement("div", {
+        classes: ["menu-item-ornament"],
+        text: "Hall recommendation",
+      });
+
       card.appendChild(image);
+      card.appendChild(ornament);
       card.appendChild(top);
       card.appendChild(desc);
       card.appendChild(tag);
@@ -231,37 +286,26 @@ export default function loadMenu(mainPanel) {
 
   renderMenuItems(menuTabs[0].id);
 
-  body.appendChild(menuNav);
-  body.appendChild(menuGrid);
-  menuCard.appendChild(header);
-  menuCard.appendChild(body);
-
-  const sidePanel = createDrinkSuggestionPanel();
-
-  mainPanel.appendChild(menuCard);
-  mainPanel.appendChild(sidePanel);
-}
-
-function createDrinkSuggestionPanel() {
-  const side = createElement("aside", { classes: ["side-panel"] });
-
-  const pairing = createElement("section", { classes: ["card"] });
-  const title = createElement("div", {
-    classes: ["side-card-title"],
-    text: "Innkeep's Pairings",
+  const pairing = createElement("section", {
+    classes: ["pairing-panel", "panel-surface"],
   });
+  pairing.appendChild(
+    createElement("div", {
+      classes: ["detail-card-label"],
+      text: "Sommelier's pairing",
+    }),
+  );
+  pairing.appendChild(
+    createElement("p", {
+      classes: ["detail-card-copy"],
+      html:
+        '<strong>Wyvernfire Stew</strong> is best matched with Emberwine Mead.<br><strong>Blackwald Mushroom Pie</strong> softens beautifully beside Moonlit Orchard Cider.<br><strong>Dragonwing Skewers</strong> deserve the bitter finish of Deepwater Black.',
+    }),
+  );
 
-  const text = createElement("p", {
-    classes: ["side-note"],
-    html:
-      `<span class="candle"> 🍺 </span> <strong> Wyvernfire Stew </strong> loves Emverwine Mead.` +
-      `<br><span class="candle"> 🍷 </span> <strong> Mushroom Pie </strong> sings with Moonlit Orchard Cider.` +
-      `<br><span class="candle"> 🥃 </span> <strong> Dragonwing Skewers </strong> demand a shot of Blackwood Firewater.`,
-  });
-
-  pairing.appendChild(title);
-  pairing.appendChild(text);
-  side.appendChild(pairing);
-
-  return side;
+  page.appendChild(heading);
+  page.appendChild(menuNav);
+  page.appendChild(menuGrid);
+  page.appendChild(pairing);
+  mainPanel.appendChild(page);
 }

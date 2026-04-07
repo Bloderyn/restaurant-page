@@ -1,0 +1,81 @@
+.hero-section {
+  min-height: 78vh;
+  display: grid;
+  align-items: end;
+  padding: clamp(28px, 5vw, 56px);
+  border: 1px solid var(--line);
+  border-radius: 36px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(14, 14, 15, 0.84),
+      rgba(14, 14, 15, 0.3) 58%,
+      rgba(14, 14, 15, 0.72)
+    ),
+    linear-gradient(180deg, rgba(14, 14, 15, 0.3), rgba(14, 14, 15, 0.76)),
+    url("../../images/background.png") center center / cover no-repeat;
+  box-shadow: var(--shadow-xl);
+}
+
+.hero-content {
+  width: min(680px, 100%);
+}
+
+.hero-title {
+  font-size: clamp(4rem, 9vw, 7rem);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.hero-copy {
+  width: min(520px, 100%);
+  margin: 20px 0 0;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: min(560px, 100%);
+  margin-top: 34px;
+}
+
+.hero-metric {
+  padding-top: 18px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.hero-metric-value {
+  display: block;
+  margin-bottom: 6px;
+  font-family: "Forum", serif;
+  font-size: 1.8rem;
+  color: var(--gold-bright);
+}
+
+.hero-metric-label {
+  color: var(--text-soft);
+  font-size: 0.84rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.closing-banner {
+  align-items: center;
+}
+
+.closing-copy {
+  display: grid;
+  gap: 14px;
+}

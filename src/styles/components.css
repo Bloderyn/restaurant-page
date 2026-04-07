@@ -1,0 +1,289 @@
+/* ─── Typography tokens ─────────────────────────────────────── */
+
+.brand-eyebrow,
+.section-eyebrow,
+.detail-card-label,
+.menu-item-ornament,
+.footer-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Serif heading family shared across all heading levels */
+.brand-title,
+.section-title,
+.hero-title,
+.feature-card-title,
+.pillar-title {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+}
+
+.section-title {
+  font-size: clamp(2.7rem, 5vw, 4.35rem);
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+/* Italic rose accent inside any heading span */
+.hero-title span,
+.section-title span {
+  color: var(--rose);
+  font-style: italic;
+}
+
+/* Muted body copy, applies broadly across all page sections */
+.hero-copy,
+.section-copy,
+.feature-card-copy,
+.detail-card-copy,
+.pillar-copy,
+.page-heading-copy,
+.section-aside,
+.story-caption,
+.menu-item-desc,
+.menu-item-tag {
+  color: var(--text-soft);
+}
+
+.section-copy,
+.detail-card-copy,
+.pillar-copy,
+.section-aside,
+.page-heading-copy,
+.story-caption,
+.menu-item-desc,
+.menu-item-tag {
+  margin: 0;
+  line-height: 1.8;
+  font-size: 0.98rem;
+}
+
+/* ─── Interactive base reset ────────────────────────────────── */
+
+.site-nav-link,
+.menu-tab,
+.button {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+/* ─── Buttons ───────────────────────────────────────────────── */
+
+.button {
+  padding: 14px 22px;
+  border-radius: 999px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+}
+
+.button:hover,
+.menu-tab:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  color: #0f0f10;
+  background: linear-gradient(135deg, #d1a85d, #f0d59f);
+  box-shadow: 0 18px 30px rgba(198, 162, 87, 0.18);
+}
+
+.button-secondary,
+.menu-tab {
+  color: var(--text-main);
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* ─── Surface panels (frosted card) ────────────────────────── */
+
+.panel-surface,
+.feature-card,
+.pillar-card,
+.contact-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 30%),
+    var(--panel);
+  box-shadow: var(--shadow-xl);
+}
+
+/* Small inset callout used inside story/menu copy */
+.detail-card {
+  margin-top: 10px;
+  padding: 20px 22px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--panel-soft);
+}
+
+/* ─── Section wrappers ──────────────────────────────────────── */
+
+.section-heading,
+.page-heading {
+  display: grid;
+  gap: 14px;
+  padding: 30px;
+}
+
+/* Eyebrow + title on the left, aside text on the right */
+.section-heading {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+}
+
+.section-aside {
+  max-width: 340px;
+  text-align: right;
+}
+
+/* ─── Two-column story / heritage layouts ───────────────────── */
+
+.story-section,
+.heritage-section,
+.closing-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 28px;
+  padding: 28px;
+}
+
+.story-media,
+.heritage-media {
+  display: grid;
+  gap: 14px;
+}
+
+.story-copy,
+.heritage-copy {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+}
+
+/* ─── Shared image base ─────────────────────────────────────── */
+
+.story-image,
+.heritage-image,
+.feature-card-image,
+.menu-item-image {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 22px;
+}
+
+/* Tall portrait images used in story and heritage sections */
+.story-image,
+.heritage-image {
+  min-height: 420px;
+  border: 1px solid var(--line);
+}
+
+/* Fixed-height card images */
+.feature-card-image,
+.menu-item-image {
+  height: 300px;
+  border: 1px solid var(--line);
+}
+
+/* ─── Content grids ─────────────────────────────────────────── */
+
+.feature-grid,
+.pillar-grid,
+.contact-grid,
+.menu-grid {
+  display: grid;
+  gap: 18px;
+}
+
+/* Three equal columns for feature, pillar, and contact grids */
+.feature-grid,
+.pillar-grid,
+.contact-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* ─── Padded content sections ───────────────────────────────── */
+
+.signature-section,
+.pillars-section,
+.pairing-panel,
+.etiquette-panel {
+  padding: 30px;
+}
+
+/* Stacked display used in sidebar-style info panels */
+.pairing-panel,
+.etiquette-panel,
+.pillars-section {
+  display: grid;
+  gap: 14px;
+}
+
+/* ─── Cards (feature / pillar / contact / menu-item) ────────── */
+
+.feature-card,
+.pillar-card,
+.contact-card,
+.menu-item {
+  padding: 16px;
+}
+
+.feature-card,
+.pillar-card,
+.contact-card {
+  border-radius: var(--radius-lg);
+}
+
+/* Header row inside each card: title + price */
+.feature-card-top,
+.menu-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.feature-card-title,
+.menu-item-name,
+.pillar-title {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.feature-card-price,
+.menu-item-price {
+  color: var(--gold-bright);
+  font-size: 1.05rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.feature-card-copy,
+.menu-item-desc {
+  margin-top: 14px;
+}
+
+/* Bottom tag / accent row with separator line */
+.feature-card-accent,
+.menu-item-tag {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}

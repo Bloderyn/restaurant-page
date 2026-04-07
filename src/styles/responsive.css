@@ -1,0 +1,94 @@
+@media (max-width: 960px) {
+  #content {
+    width: min(100% - 20px, 1240px);
+  }
+
+  /* Collapse two-column grids to a single column */
+  .site-header,
+  .story-section,
+  .heritage-section,
+  .closing-banner,
+  .section-heading,
+  .feature-grid,
+  .pillar-grid,
+  .contact-grid,
+  .hero-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header,
+  .site-footer {
+    border-radius: 28px;
+  }
+
+  .site-nav {
+    justify-content: flex-start;
+  }
+
+  .hero-section {
+    min-height: 68vh;
+  }
+
+  .section-aside {
+    max-width: none;
+    text-align: left;
+  }
+}
+
+@media (max-width: 640px) {
+  #content {
+    width: min(100% - 14px, 1240px);
+    margin-top: 8px;
+  }
+
+  .site-header,
+  .page-heading,
+  .signature-section,
+  .pillars-section,
+  .pairing-panel,
+  .etiquette-panel,
+  .story-section,
+  .heritage-section,
+  .closing-banner,
+  .site-footer {
+    padding: 20px;
+  }
+
+  .hero-section {
+    min-height: 72vh;
+    padding: 20px;
+    border-radius: 28px;
+  }
+
+  .hero-title {
+    font-size: clamp(3.2rem, 18vw, 5rem);
+  }
+
+  .feature-card-image,
+  .menu-item-image {
+    height: 240px;
+  }
+
+  .story-image,
+  .heritage-image {
+    min-height: 260px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .main-panel,
+  .main-panel.panel-transition-out,
+  .main-panel.panel-transition-in,
+  .site-nav-link,
+  .menu-tab,
+  .button {
+    transition: none;
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+}

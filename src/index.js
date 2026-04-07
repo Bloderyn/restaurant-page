@@ -39,42 +39,54 @@ export function createElement(tag, options = {}) {
 }
 
 function createHeader() {
-  const header = createElement("header", { classes: ["tavern-header"] });
+  const header = createElement("header", { classes: ["site-header"] });
+
+  const brand = createElement("div", { classes: ["brand-block"] });
 
   const title = createElement("h1", {
-    classes: ["tavern-title"],
-    text: "The Drunken Wyvern",
+    classes: ["brand-title"],
+    text: "The Gilded Wyvern",
   });
 
   const subtitle = createElement("p", {
-    classes: ["tavern-subtitle"],
-    text: "EST. Somewhere Between Wars",
+    classes: ["brand-subtitle"],
+    text: "Grand Hall and Supper Club",
   });
 
-  header.appendChild(title);
-  header.appendChild(subtitle);
+  const eyebrow = createElement("span", {
+    classes: ["brand-eyebrow"],
+    text: "By candlelight and crownfire",
+  });
+
+  brand.appendChild(eyebrow);
+  brand.appendChild(title);
+  brand.appendChild(subtitle);
 
   const nav = createNav();
+  header.appendChild(brand);
   header.appendChild(nav);
 
   return header;
 }
 
 function createNav() {
-  const nav = createElement("nav", { classes: ["nav-tabs"] });
+  const nav = createElement("nav", {
+    classes: ["site-nav"],
+    attrs: { "aria-label": "Primary" },
+  });
 
   const tabsInfo = [
-    { id: "home", label: "Home" },
-    { id: "menu", label: "Menu" },
-    { id: "about", label: "About" },
-    { id: "contact", label: "Contact" },
+    { id: "home", label: "Grand Hall" },
+    { id: "menu", label: "Curated Menu" },
+    { id: "about", label: "Lore" },
+    { id: "contact", label: "Reservations" },
   ];
 
   tabsInfo.forEach((tab, index) => {
     const btn = createElement("button", {
-      classes: ["nav-tab"],
+      classes: ["site-nav-link"],
       text: tab.label,
-      attrs: { "data-tab": tab.id },
+      attrs: { "data-tab": tab.id, type: "button" },
     });
 
     if (index === 0) btn.classList.add("active");
@@ -89,14 +101,16 @@ function createMainPanel() {
 }
 
 function createFooter() {
-  const footer = createElement("footer", { classes: ["tavern-footer"] });
+  const footer = createElement("footer", { classes: ["site-footer"] });
 
   const left = createElement("div", {
-    text: "No questions about the stains on the ceiling, please.",
+    html:
+      '<span class="footer-label">House promise</span> Velvet service, open hearths, and a table set for bold company.',
   });
 
   const right = createElement("div", {
-    text: "House motto · Pay your tab before dawn.",
+    html:
+      '<span class="footer-label">Evening hours</span> Doors open at dusk. Private feasts by arrangement.',
   });
 
   footer.appendChild(left);
@@ -106,7 +120,7 @@ function createFooter() {
 }
 
 function setActiveTab(tabId) {
-  const buttons = document.querySelectorAll(".nav-tab");
+  const buttons = document.querySelectorAll(".site-nav-link");
   buttons.forEach((btn) => {
     const isActive = btn.getAttribute("data-tab") === tabId;
     btn.classList.toggle("active", isActive);
@@ -147,9 +161,10 @@ function init() {
   loadHome(mainPanel);
 
   content.addEventListener("click", (e) => {
-    if (!e.target.classList.contains("nav-tab")) return;
+    const tabTrigger = e.target.closest("[data-tab]");
+    if (!tabTrigger) return;
 
-    const tabId = e.target.getAttribute("data-tab");
+    const tabId = tabTrigger.getAttribute("data-tab");
     if (tabId === currentTabId || isTabTransitioning) return;
 
     isTabTransitioning = true;
